@@ -1,14 +1,20 @@
-import { Stack } from "@mui/material";
-import React, { Component } from "react";
-import { MuiDrawer } from "./common/Drawer";
+import React, { useState } from "react";
 import NavBar from "./common/NavBar";
+import Drawer from "./common/Drawer";
 
-const Layout = () => {
+function Layout() {
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+
+  const handleDrawer = () => {
+    setIsDrawerOpen(!isDrawerOpen);
+  };
+
   return (
-    <Stack>
-      <NavBar />
-    </Stack>
+    <>
+      <NavBar handleDrawer={handleDrawer} />
+      <Drawer isDrawerOpen={isDrawerOpen} handleDrawer={handleDrawer} />
+    </>
   );
-};
+}
 
 export default Layout;

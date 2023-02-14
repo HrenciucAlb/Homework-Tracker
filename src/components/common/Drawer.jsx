@@ -1,9 +1,11 @@
-import { Drawer, Box, Typography, IconButton, Icon, Menu } from "@mui/material";
-import MenuIcon from "@mui/icons-material/Menu";
+import {
+  Drawer as MuiDrawer,
+  Box,
+  Typography,
+  IconButton,
+} from "@mui/material";
 import ArrowBackIosNewSharpIcon from "@mui/icons-material/ArrowBackIosNewSharp";
 import { styled } from "@mui/material/styles";
-
-import { useState } from "react";
 
 const DrawerHeader = styled("div")(() => ({
   display: "flex",
@@ -11,27 +13,17 @@ const DrawerHeader = styled("div")(() => ({
   justifyContent: "flex-end",
 }));
 
-export const MuiDrawer = () => {
-  const [isDrawerOpen, setisDrawerOpen] = useState(false);
+const Drawer = ({ isDrawerOpen, handleDrawer }) => {
   return (
-    <div>
-      <IconButton
-        size="large"
-        edge="start"
-        color="inherit"
-        aria-label="menu"
-        onClick={() => setisDrawerOpen(true)}
-      >
-        <MenuIcon />
-      </IconButton>
-      <Drawer
+    <>
+      <MuiDrawer
         anchor="left"
         open={isDrawerOpen}
-        onClose={() => setisDrawerOpen(false)}
+        onClose={() => handleDrawer()}
       >
         <Box p={2} width="250px" textAllign="center" role="presentation">
           <DrawerHeader>
-            <IconButton onClick={() => setisDrawerOpen(false)}>
+            <IconButton onClick={() => handleDrawer()}>
               <ArrowBackIosNewSharpIcon />
             </IconButton>
           </DrawerHeader>
@@ -39,7 +31,9 @@ export const MuiDrawer = () => {
             Side Panel
           </Typography>
         </Box>
-      </Drawer>
-    </div>
+      </MuiDrawer>
+    </>
   );
 };
+
+export default Drawer;
