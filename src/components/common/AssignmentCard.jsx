@@ -4,21 +4,23 @@ import {
   CardHeader,
   CardContent,
   CardActions,
-  Button,
+  IconButton,
 } from "@mui/material";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import CheckIcon from "@mui/icons-material/Check";
 
-const AssignmentCard = () => {
+const AssignmentCard = ({ homework, ...props }) => {
   return (
     <Card variant="outlined" elevation={3}>
-      {" "}
-      <CardHeader title="Assignments" subheader="Dezastru" />
-      <CardContent>
-        <p>Ai teme de facut baetas</p>
-      </CardContent>
-      <CardActions>
-        <Button variant="contained" color="primary">
-          Button
-        </Button>
+      <CardHeader title={homework.title} subheader={homework.subject} />
+      <CardContent>{homework.description}</CardContent>
+      <CardActions sx={{ justifyContent: "flex-end" }}>
+        <IconButton color={homework.isDone ? "success" : "disabled"}>
+          <CheckIcon />
+        </IconButton>
+        <IconButton color="primary">
+          <VisibilityIcon />
+        </IconButton>
       </CardActions>
     </Card>
   );
