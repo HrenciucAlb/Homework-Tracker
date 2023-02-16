@@ -1,15 +1,40 @@
 import { Stack } from "@mui/system";
-import { IconButton } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import Week from "./common/Week";
-import KeyboardArrowLeftSharpIcon from "@mui/icons-material/KeyboardArrowLeftSharp";
-import KeyboardArrowRightSharpIcon from "@mui/icons-material/KeyboardArrowRightSharp";
+import ChangeWeek from "./common/ChangeWeek";
+import { currentWeek } from "../utils/dates";
+import { addWeeks, subWeeks } from "date-fns";
 
 const Content = () => {
+  const [firstDay, setFirstDay] = useState(currentWeek[0]);
+  const [lastDay, setLastDay] = useState(currentWeek[4]);
+
+  const setWeek = (monday, friday) => {
+    setFirstDay(monday);
+    setLastDay(friday);
+  };
+
+  const handleLeftArrow = () => {
+    const firstNewDay = subWeeks(firstDay, 1);
+    const lastNewDay = subWeeks(lastDay, 1);
+    setWeek(firstNewDay, lastNewDay);
+  };
+
+  const handleRightArrow = () => {
+    const firstNewDay = addWeeks(firstDay, 1);
+    const lastNewDay = addWeeks(lastDay, 1);
+    setWeek(firstNewDay, lastNewDay);
+  };
+
   return (
     <Stack spacing={2}>
-      <h1>HomeworkTracker</h1>
-      <Week />
+      <ChangeWeek
+        handleLeftArrow={handleLeftArrow}
+        handleRightArrow={handleRightArrow}
+        firstDay={firstDay}
+        lastDay={lastDay}
+      />
+      <Week firstDay={firstDay} lastDay={lastDay} />
     </Stack>
   );
 };
