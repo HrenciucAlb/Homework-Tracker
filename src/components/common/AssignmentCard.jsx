@@ -11,7 +11,7 @@ import CheckIcon from "@mui/icons-material/Check";
 
 const AssignmentCard = ({ homework, ...props }) => {
   return (
-    <Card variant="outlined" elevation={3}>
+    <Card variant="outlined">
       <CardHeader title={homework.title} subheader={homework.subject} />
       <CardContent>{homework.description}</CardContent>
       <CardActions sx={{ justifyContent: "flex-end" }}>
