@@ -5,7 +5,7 @@ import ChangeWeek from "./common/ChangeWeek";
 import { currentWeek } from "../utils/dates";
 import { addWeeks, subWeeks } from "date-fns";
 
-const Content = () => {
+const Content = ({ checked }) => {
   const [firstDay, setFirstDay] = useState(currentWeek[0]);
   const [lastDay, setLastDay] = useState(currentWeek[4]);
 
@@ -34,7 +34,7 @@ const Content = () => {
         firstDay={firstDay}
         lastDay={lastDay}
       />
-      <Week firstDay={firstDay} lastDay={lastDay} />
+      <Week checked={checked} firstDay={firstDay} lastDay={lastDay} />
     </Stack>
   );
 };

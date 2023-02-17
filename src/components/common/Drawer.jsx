@@ -6,6 +6,7 @@ import {
 } from "@mui/material";
 import ArrowBackIosNewSharpIcon from "@mui/icons-material/ArrowBackIosNewSharp";
 import { styled } from "@mui/material/styles";
+import Checklist from "./Checklist";
 
 const DrawerHeader = styled("div")(() => ({
   display: "flex",
@@ -13,7 +14,14 @@ const DrawerHeader = styled("div")(() => ({
   justifyContent: "flex-end",
 }));
 
-const Drawer = ({ isDrawerOpen, handleDrawer }) => {
+const Drawer = ({
+  isDrawerOpen,
+  handleDrawer,
+  handleChange,
+  checked,
+  courses,
+  isLoading,
+}) => {
   return (
     <>
       <MuiDrawer
@@ -21,15 +29,19 @@ const Drawer = ({ isDrawerOpen, handleDrawer }) => {
         open={isDrawerOpen}
         onClose={() => handleDrawer()}
       >
-        <Box p={2} width="250px" textAllign="center" role="presentation">
+        <Box p={2} width="400px" role="presentation">
           <DrawerHeader>
             <IconButton onClick={() => handleDrawer()}>
               <ArrowBackIosNewSharpIcon />
             </IconButton>
           </DrawerHeader>
-          <Typography variant="h6" component="div">
-            Side Panel
-          </Typography>
+          <Typography variant="h4">Filter</Typography>
+          <Checklist
+            handleChange={handleChange}
+            checked={checked}
+            courses={courses}
+            isLoading={isLoading}
+          />
         </Box>
       </MuiDrawer>
     </>
