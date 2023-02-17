@@ -13,7 +13,7 @@ const titles = ["Title1", "Title2", "Title3", "Title4"];
 
 function NavBar({ handleDrawer }) {
   const listItems = titles.map((title) => (
-    <Typography variant="h6" component="div" sx={{ mr: 2 }}>
+    <Typography key={title} variant="h6" component="div" sx={{ mr: 2 }}>
       {title}
     </Typography>
   ));
